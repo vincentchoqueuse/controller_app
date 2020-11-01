@@ -27,7 +27,7 @@
         <div class="form-inline my-2 my-lg-0">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="s" class="nav-link" >Github</a>
+                    <a href="https://github.com/vincentchoqueuse/controller_app" class="nav-link" >Github</a>
                 </li>
             </ul>
         </div>

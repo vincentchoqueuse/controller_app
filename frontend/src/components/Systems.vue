@@ -74,7 +74,6 @@
         </div>
     </div>
     <div class="col-sm-9">
-{{selected}}
         <div class="menu">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
