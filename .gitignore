@@ -1,0 +1,17 @@
+/frontend/node_modules
+/frontend/test/js
+/frontend/test/browsertest/js
+/frontend/test/fixtures/temp-*
+/frontend/test/temp
+/frontend/test/ChangesAndRemovals
+/frontend/benchmark/js
+/frontend/benchmark/fixtures
+/frontend/examples/**/dist
+/frontend/coverage
+.DS_Store
+*.log
+.idea
+.vscode
+.cache
+.eslintcache
+package-lock.json
