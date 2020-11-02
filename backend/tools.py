@@ -127,7 +127,7 @@ def feedback(sys1,sys2,sign=-1):
     
     num = polymul(num1, den2)
     den = polyadd(polymul(den2, den1), -sign * polymul(num2, num1))
-        
+    
     return TransferFunction(num, den, dt)
 
 
@@ -135,22 +135,22 @@ def get_controller_sys(type,Ki,Ti,dt=None):
     
     if dt == None:
         if type == "none":
-            tf = TransferFunction([1],[1])
+            sys = TransferFunction([1],[1])
         if type == "P":
-            tf = TransferFunction([Ki],[1])
+            sys = TransferFunction([Ki],[1])
         if type == "PI":
-            tf = TransferFunction([Ki*Ti,Ki],[Ti,0])
-       
+            sys = TransferFunction([Ki*Ti,Ki],[Ti,0])
+    
     else:
         if type == "none":
-            tf = TransferFunction([1],[1],dt=dt)
+            sys = TransferFunction([1],[1],dt=dt)
         if type == "P":
-            tf = TransferFunction([Ki],[1],dt=dt)
+            sys = TransferFunction([Ki],[1],dt=dt)
         if type == "PI":
-            tf1 = TransferFunction([Ki],[1],dt=dt)
-            tf2 = TransferFunction([Ki*dt/Ti,0],[1,-1],dt=dt)
-            tf = tf1+tf2
-    return tf
+            sys1 = TransferFunction([Ki],[1],dt=dt)
+            sys2 = TransferFunction([Ki*dt/Ti,0],[1,-1],dt=dt)
+            sys = sys1+sys2
+    return sys
 
 
 def system(num,den,type,Ki,Ti,CL,Ts=None):
