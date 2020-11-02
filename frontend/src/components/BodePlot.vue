@@ -21,12 +21,6 @@
                     <input type="number" class="form-control form-control-sm" id="n" v-model="n" aria-describedby="n" min="1" max="1000">
                 </div>
             </div>
-            <div class="form-group row">
-                <label for="N" class="col-sm-2 col-form-label">Color</label>
-                <div class="col-sm-10">
-                    <input type="color" class="form-control form-control-sm" id="favcolor" name="favcolor" v-model="color">
-                </div>
-            </div>
         </div>
         <div>
             <button class="btn btn-secondary btn-block" v-on:click=submit>Plot</button>
@@ -84,7 +78,6 @@ export default {
             n: 100,
             name : "bode",
             server_error : null,
-            color : "#6E33FF",
             layout : {
                 grid: {rows: 2,columns: 1},
                 title: {text:' '},
@@ -107,10 +100,6 @@ export default {
             else
             {
                 this.server_error = null,
-                data[0]["line"]={color:this.color},
-                data[0]["marker"]={color:this.color},
-                data[1]["line"]={color:this.color},
-                data[1]["marker"]={color:this.color},
                 this.$store.commit('add_bode_data',data);
             }
         },

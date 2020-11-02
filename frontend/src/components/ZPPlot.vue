@@ -27,12 +27,6 @@
                 </select>
                 </div>
             </div>
-            <div class="form-group row">
-                <label for="N" class="col-sm-2 col-form-label">Color</label>
-                <div class="col-sm-10">
-                    <input type="color" class="form-control form-control-sm" id="favcolor" name="favcolor" v-model="color">
-                </div>
-            </div>
             <div>
                  <button class="btn btn-secondary btn-block" v-on:click=submit>Plot</button>
             </div>
@@ -89,7 +83,6 @@ export default {
             ShowPlot: true,
             circle : true,
             server_error : null,
-            color : "#6E33FF",
             plot_circle : [],
             layout : {
                 hovermode : 'closest',
@@ -126,12 +119,6 @@ export default {
             else
             {
                 this.server_error = null,
-                data[1]["line"]={color:this.color},
-                data[1]["marker"]={color:this.color,size:12,symbol:'circle-open',line:{width:2}},
-                data[1]["mode"] = "markers",
-                data[0]["line"]={color:this.color},
-                data[0]["marker"]={color:this.color,size:12,symbol:'x'},
-                data[0]["mode"] = "markers",
                 this.$store.commit('add_zpmap_data',data);
             }
         },

@@ -21,12 +21,6 @@
                     <input type="number" class="form-control form-control-sm" id="N" v-model="N" aria-describedby="N" min="1" max="1000">
                 </div>
              </div>
-            <div class="form-group row">
-                <label for="N" class="col-sm-2 col-form-label">Color</label>
-                <div class="col-sm-10">
-                    <input type="color" class="form-control form-control-sm" id="favcolor" name="favcolor" v-model="color">
-                </div>
-            </div>
             <div>
                  <button class="btn btn-secondary btn-block" v-on:click=submit>Plot</button>
 
@@ -84,7 +78,6 @@ export default {
             ShowPlot: true,
             N: 100,
             server_error : null,
-            color : "#6E33FF",
             layout : {
                 title: {text:' '},
                 xaxis: {title: {text: 'time (s)',},},
@@ -105,15 +98,6 @@ export default {
             else
             {
                 this.server_error = null;
-                if (data["discrete"] == true)
-                {
-                    data["line"]={color:this.color,shape: 'hv'};
-                }
-                else
-                {
-                    data["line"]= {color:this.color};
-                }
-                data["marker"]={color:this.color};
                 this.$store.commit('add_time_data',data);
             }
         },

@@ -13,7 +13,20 @@ export default new Vuex.Store({
     plot_list_nichols: [] ,
     plot_list_zpmap: [] ,
     selected : 0,
-    system_list: [{name : "system1",controller_Cl: false,controller_Ki : "1",controller_Ti: "1", controller_type: "none", sys_num : "1", sys_den : "1,1,1",sys_Ts: "1", sys_type: "continuous"}],
+    system_list: [
+        {
+        name : "system1",
+        controller_Cl: false,
+        controller_Ki : "1",
+        controller_Ti: "1",
+        controller_type: "none",
+        sys_num : "1",
+        sys_den : "1,1,1",
+        sys_Ts: "1",
+        sys_type: "continuous",
+        color : "#6E33FF"
+        }
+    ],
   },
   getters: {
     getField,

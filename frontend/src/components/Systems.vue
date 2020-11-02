@@ -11,6 +11,12 @@
             </div>
         </div>
         <div class="form-group row">
+            <label for="N" class="col-sm-2 col-form-label">Color</label>
+            <div class="col-sm-10">
+                <input type="color" class="form-control form-control-sm" id="favcolor" name="favcolor" v-model="color">
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="Type" class="col-sm-2 col-form-label">Type</label>
             <div class="col-sm-10">
                 <select class="custom-select custom-select-sm" v-model="sys_type" v-on:change="change_system_type">
@@ -85,6 +91,8 @@
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>name</th>
+                  <th>color</th>
                   <th>num</th>
                   <th>den</th>
                   <th>Type</th>
@@ -95,7 +103,9 @@
               </thead>
               <tbody>
                 <tr v-for="(system,index) in system_list" :key="index">
+                   <td>{{ index+1  }}</td>
                    <td>{{ system.name  }}</td>
+                   <td><input type="color" class="form-control form-control-sm btn-color" id="favcolor" name="favcolor" :value=system.color disabled></td>
                    <td>[{{ system.sys_num }}]</td>
                    <td>[{{ system.sys_den }}]</td>
                    <td>{{ system.sys_type }}</td>
@@ -133,6 +143,7 @@ export default {
         return {
             server_error : null,
             name : null,
+            color : null,
             sys_type : null,
             sys_num : null,
             sys_den : null,
@@ -153,7 +164,7 @@ export default {
         ...mapFields(['system_list','selected']),
         show_loop() {
             var value;
-            if (this.structure_loop==false)
+            if (this.controller_Cl==false)
                 {
                 value = "closed";
                 }
@@ -175,10 +186,12 @@ export default {
                 this[k]=selected_system[k];
                 }
             }
+            this.change_system_type();
+            this.change_controller_type();
         },
         change_system_type(){
             var values = {"continuous":1,"discrete":0};
-            this.Ts_disabled = values[this.system_type];
+            this.Ts_disabled = values[this.sys_type];
         },
         change_controller_type(){
             var values = {"none":[1,1],"P":[0,1],"PI":[0,0]};
@@ -202,7 +215,9 @@ export default {
                 sys_num : this.sys_num,
                 sys_den : this.sys_den,
                 sys_Ts:   this.sys_Ts,
-                sys_type: this.sys_type};
+                sys_type: this.sys_type,
+                color: this.color
+                };
 
         this.$store.commit('add_system',data);
         this.$store.commit('change_selected',-1);
