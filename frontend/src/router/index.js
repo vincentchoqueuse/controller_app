@@ -21,7 +21,7 @@ export default new Router({
       component: Systems
     },
     {
-      path: '/step',
+      path: '/time',
       name: 'Time Plot',
       component: TimePlot
     },

@@ -60,8 +60,8 @@
                 <tr v-for="(plot,index) in plot_list_zpmap" :key="index">
                    <th>{{ index+1 }}</th>
                    <td>{{ plot.name }}</td>
-                    <td><input type="color" class="form-control form-control-sm btn-color" id="favcolor" name="favcolor" :value=plot.line.color disabled></td>
-                  <td><button @click="delete_plot(index)" class="btn btn-sm btn_simple"><font-awesome-icon icon="trash" /></button></td>
+                    <td><div class="badge badge-color" v-bind:style="{ backgroundColor: plot.line.color }">{{plot.line.color}}</div></td>
+                   <td><button @click="delete_plot(index)" class="btn btn-sm btn_simple"><font-awesome-icon icon="trash" /></button></td>
                 </tr>
                </tbody>
             </table>
@@ -81,7 +81,7 @@ export default {
         {
         return {
             ShowPlot: true,
-            circle : true,
+            circle : false,
             server_error : null,
             plot_circle : [],
             layout : {

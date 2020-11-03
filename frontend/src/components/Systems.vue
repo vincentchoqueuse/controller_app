@@ -105,7 +105,7 @@
                 <tr v-for="(system,index) in system_list" :key="index">
                    <td>{{ index+1  }}</td>
                    <td>{{ system.name  }}</td>
-                   <td><input type="color" class="form-control form-control-sm btn-color" id="favcolor" name="favcolor" :value=system.color disabled></td>
+                   <td><div class="badge badge-color" v-bind:style="{ backgroundColor: system.color }">{{system.color}}</div></td>
                    <td>[{{ system.sys_num }}]</td>
                    <td>[{{ system.sys_den }}]</td>
                    <td>{{ system.sys_type }}</td>
@@ -121,7 +121,6 @@
                         <div v-if="system.controller_type == 'none'">None</div>
                         <div v-if="system.controller_type == 'P'">Ki = {{system.controller_Ki}}</div>
                         <div v-if="system.controller_type == 'PI'">Ki = {{system.controller_Ki}}, Ti = {{system.controller_Ti}}</div>
-
                     </td>
                   <td><button @click="deleteSystem(index)" class="btn btn-sm btn_simple"><font-awesome-icon icon="trash" /></button></td>
                 </tr>
@@ -240,8 +239,6 @@ a {
   color: #2c3e50;
 }
 
-.badge{
-    width: 60px;
-}
+
 </style>
 

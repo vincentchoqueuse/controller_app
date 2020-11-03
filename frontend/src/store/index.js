@@ -24,7 +24,7 @@ export default new Vuex.Store({
         sys_den : "1,1,1",
         sys_Ts: "1",
         sys_type: "continuous",
-        color : "#6E33FF"
+        color : "#6e33ff"
         }
     ],
   },

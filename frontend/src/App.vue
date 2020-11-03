@@ -11,7 +11,7 @@
                     <router-link class="nav-link" to="/system">System</router-link>
                 </li>   
                 <li class="nav-item ">                 
-                    <router-link class="nav-link" to="/step">Step Response</router-link>
+                    <router-link class="nav-link" to="/time">Time Response</router-link>
                 </li>
                 <li class="nav-item ">
                     <router-link class="nav-link" to="/bode">Bode Plot</router-link>

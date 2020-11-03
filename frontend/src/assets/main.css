@@ -90,3 +90,12 @@ h2{
     color: #999;
 }
 
+
+.badge{
+    width: 60px;
+}
+
+.badge-color{
+    width: 60px;
+    color: white;
+}
