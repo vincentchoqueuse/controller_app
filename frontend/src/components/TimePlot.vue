@@ -3,6 +3,7 @@
     <div class="col-sm-3 sidebar h-100">
         <h2>Time Response</h2>
         <div class="error">{{server_error}}</div>
+        <hr>
         <h3>Add Plot</h3>
         <div class="side">
             <div class="form-group row">
@@ -43,8 +44,9 @@
                     <input type="number" class="form-control form-control-sm" id="N" v-model="N" aria-describedby="N" min="1" max="1000">
                 </div>
             </div>
+            <hr>
             <div>
-                 <button class="btn btn-secondary btn-block" v-on:click=submit>Plot</button>
+                 <button class="btn btn-secondary btn-block" v-on:click=submit>New Plot</button>
             </div>
         </div>  
     </div>

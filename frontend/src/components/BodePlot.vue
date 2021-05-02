@@ -3,6 +3,7 @@
     <div class="col-sm-3 sidebar h-100">
         <h2>Bode Response</h2>
         <div class="error">{{server_error}}</div>
+        <hr>
         <h3>Add Plot</h3>
         <div class="side">
             <div class="form-group row">
@@ -22,8 +23,9 @@
                 </div>
             </div>
         </div>
+        <hr>
         <div>
-            <button class="btn btn-secondary btn-block" v-on:click=submit>Plot</button>
+            <button class="btn btn-secondary btn-block" v-on:click=submit>New Plot</button>
         </div>
     </div>
     <div class="col-sm-9">

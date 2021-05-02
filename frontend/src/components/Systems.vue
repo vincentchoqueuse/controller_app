@@ -3,6 +3,7 @@
     <div class="col-sm-3 sidebar h-100">
         <h2>System Parameters</h2>
         <div class="error">{{server_error}}</div>
+        <hr>
         <h3>System</h3>
         <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">name</label>
@@ -43,6 +44,7 @@
                 <input type="number" class="form-control form-control-sm" id="Ts" v-model="sys_Ts" aria-describedby="Ts" :disabled="Ts_disabled == 1">
             </div>
         </div>
+        <hr>
         <h3 >Controller</h3>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Loop</label>
@@ -75,8 +77,14 @@
                 <input type="number" class="form-control form-control-sm" id="Ti" v-model="controller_Ti" aria-describedby="Ti" :disabled="Ti_disabled == 1">
             </div>
         </div>
-        <div>
-            <button class="btn btn-secondary btn-block" v-on:click=submit>Save</button>
+        <hr>
+        <div class="form-group row">
+            <div class="col-sm-6">
+            <button class="btn btn-secondary btn-block" v-on:click="updateSystem()">Update</button>
+            </div>
+            <div class="col-sm-6">
+            <button class="btn btn-secondary btn-block" v-on:click="addSystem()">Save as New</button>
+            </div>
         </div>
     </div>
     <div class="col-sm-9">
@@ -122,7 +130,10 @@
                         <div v-if="system.controller_type == 'P'">Ki = {{system.controller_Ki}}</div>
                         <div v-if="system.controller_type == 'PI'">Ki = {{system.controller_Ki}}, Ti = {{system.controller_Ti}}</div>
                     </td>
-                  <td><button @click="deleteSystem(index)" class="btn btn-sm btn_simple"><font-awesome-icon icon="trash" /></button></td>
+                  <td>
+                      <button @click="duplicateSystem(index)" class="btn btn-sm btn_simple"><font-awesome-icon icon="clone" /></button>
+                      <button @click="editSystem(index)" class="btn btn-sm btn_simple"><font-awesome-icon icon="cog" /></button>
+                      <button @click="deleteSystem(index)" class="btn btn-sm btn_simple"><font-awesome-icon icon="trash" /></button></td>
                 </tr>
                </tbody>
             </table>
@@ -165,14 +176,14 @@ export default {
             var value;
             if (this.controller_Cl==false)
                 {
-                value = "closed";
+                value = "open loop";
                 }
             else
                 {
-                value = "open";
+                value = "closed loop";
                 }
             return value;
-        }
+        },
     },
     methods: {
         init_selected_sys()
@@ -197,15 +208,9 @@ export default {
             this.Ki_disabled = values[this.controller_type][0];
             this.Ti_disabled = values[this.controller_type][1];
             },
-        deleteSystem(index)
+        get_data()
         {
-            this.system_list.splice(index,1);
-            this.selected = this.system_list.length -1;
-            this.init_selected_sys();
-        },
-        submit()
-        {
-        var data = {
+            return {
                 name : this.name,
                 controller_Cl: this.controller_Cl,
                 controller_Ki : this.controller_Ki,
@@ -217,9 +222,34 @@ export default {
                 sys_type: this.sys_type,
                 color: this.color
                 };
+        },
 
+        addSystem()
+        {
+        var data = this.get_data();
         this.$store.commit('add_system',data);
         this.$store.commit('change_selected',-1);
+        },
+        editSystem(index)
+        {
+            this.selected = index
+            this.init_selected_sys();
+        },
+        duplicateSystem(index)
+        {
+            var data = this.system_list[index];
+            this.$store.commit('add_system',data);
+            this.$store.commit('change_selected',-1);
+        },
+        deleteSystem(index)
+        {
+            this.system_list.splice(index,1);
+            this.selected = this.system_list.length -1;
+            this.init_selected_sys();
+        },
+        updateSystem()
+        {
+            this.$set(this.system_list,this.selected, this.get_data());
         }
     }
 }

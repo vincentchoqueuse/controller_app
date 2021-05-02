@@ -11,8 +11,10 @@ export default new Vuex.Store({
     plot_list_time: [],
     plot_list_bode: [],
     plot_list_nichols: [] ,
-    plot_list_zpmap: [] ,
+    plot_list_zpmap: [],
     selected : 0,
+    grid_nichols : "3,0,-3,-6",
+    grid_zpmap : false,
     system_list: [
         {
         name : "system1",
@@ -44,6 +46,10 @@ export default new Vuex.Store({
     add_system(state,data)
     {
         state.system_list.push(data);
+    },
+    update_system(state,data)
+    {
+        state.system_list[state.selected]=data;
     },
     add_time_data(state,data)
         {

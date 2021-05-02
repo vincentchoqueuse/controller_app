@@ -11,6 +11,10 @@ h3{
     padding-bottom: 10px;
 }
 
+.col-form-label {
+    padding-top:2px;
+    padding-bottom: 0px;
+}
 
 .side{
     padding-top: 10px;
@@ -31,8 +35,6 @@ h3{
 }
 
 
-
-
 .btn-outline-secondary{
     background-color: white;
     border-color: #dee2e6;
@@ -40,7 +42,6 @@ h3{
 
 .error{
     color: red;
-    padding-bottom: 20px;
 }
 
 .row{

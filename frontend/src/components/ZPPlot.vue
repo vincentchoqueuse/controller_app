@@ -3,18 +3,20 @@
     <div class="col-sm-3 sidebar h-100">
         <h2>Poles and Zeros Map</h2>
         <div class="error">{{server_error}}</div>
-        <h3>Additional Grid</h3>
+        <hr>
+        <h3>Grid</h3>
         <div class="side">
             <div class="form-group row">
                 <label for="cmag" class="col-sm-2 col-form-label">Circle</label>
                 <div class="col-sm-10">
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="circle" v-model="circle" >
+                      <input type="checkbox" class="custom-control-input" id="circle" v-model="grid_zpmap" >
                       <label class="custom-control-label" for="circle">Show</label>
                     </div>
                 </div>
             </div>
         </div>
+        <hr>
         <h3>Add Plot</h3>
         <div class="side">
             <div class="form-group row">
@@ -27,8 +29,9 @@
                 </select>
                 </div>
             </div>
+            <hr>
             <div>
-                 <button class="btn btn-secondary btn-block" v-on:click=submit>Plot</button>
+                 <button class="btn btn-secondary btn-block" v-on:click=submit>New Plot</button>
             </div>
         </div>
     </div>
@@ -81,7 +84,6 @@ export default {
         {
         return {
             ShowPlot: true,
-            circle : false,
             server_error : null,
             plot_circle : [],
             layout : {
@@ -96,12 +98,12 @@ export default {
             this.plot_circle = this.compute_circle();
     },
     watch: {
-        circle: function() {
+        grid_zpmap: function() {
             this.plot_circle = this.compute_circle();
         }
     },
     computed: {
-            ...mapFields(['system_list','plot_list_zpmap','selected']),
+            ...mapFields(['system_list','plot_list_zpmap','selected','grid_zpmap']),
             plot_data: function()
             {
                 var data = this.$store.state.plot_list_zpmap;
@@ -129,7 +131,7 @@ export default {
         compute_circle: function ()
         {
             var data = []
-            if (this.circle == true)
+            if (this.grid_zpmap == true)
                 {
                 var angle;
                 var x = [];

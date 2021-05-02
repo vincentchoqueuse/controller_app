@@ -3,15 +3,17 @@
     <div class="col-sm-3 sidebar h-100">
         <h2>Nichols Chart</h2>
         <div class="error">{{server_error}}</div>
-        <h3>Closed Loop Grid</h3>
+        <hr>
+        <h3>Grid</h3>
         <div class="side">
             <div class="form-group row">
-                <label for="cmag" class="col-sm-2 col-form-label">Gain Contour</label>
+                <label for="cmag" class="col-sm-2 col-form-label">Gain</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control form-control-sm" id="name" v-model="c_mag_grid" aria-describedby="name">
+                    <input type="text" class="form-control form-control-sm" id="name" v-model="grid_nichols" aria-describedby="name">
                 </div>
             </div>
         </div>
+        <hr>
         <h3>Add Plot</h3>
         <div class="side">
             <div class="form-group row">
@@ -31,8 +33,9 @@
                 </div>
             </div>
         </div>
+        <hr>
         <div>
-            <button class="btn btn-secondary btn-block" v-on:click=submit>Plot</button>
+            <button class="btn btn-secondary btn-block" v-on:click=submit>New Plot</button>
         </div>
     </div>
     <div class="col-sm-9">
@@ -78,6 +81,7 @@
 import { mapFields } from 'vuex-map-fields';
 import {Plotly} from 'vue-plotly'
 
+
 export default {
     name: 'System',
     components: {Plotly},
@@ -87,7 +91,6 @@ export default {
             ShowPlot: true,
             name : "plot",
             n: 100,
-            c_mag_grid : "-1,-3,-6",
             plot_contours : [],
             layout : {
                 hovermode : 'closest',
@@ -101,12 +104,12 @@ export default {
         this.plot_contours = this.compute_contours();
     },
     watch: {
-        c_mag_grid: function() {
+        grid_nichols: function() {
         this.plot_contours = this.compute_contours();
         }
     },
     computed: {
-        ...mapFields(['plot_list_nichols','system_list','selected']),
+        ...mapFields(['plot_list_nichols','system_list','selected','grid_nichols']),
         plot_data: function()
         {
             var data = this.$store.state.plot_list_nichols;
@@ -133,7 +136,7 @@ export default {
         },
         compute_contours: function ()
         {
-            var values = this.c_mag_grid.split(",");
+            var values = this.grid_nichols.split(",");
             var data = [];
             for (var i=0;i<values.length;i++)
             {
